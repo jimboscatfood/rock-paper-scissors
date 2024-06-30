@@ -1,3 +1,8 @@
+let humanScore = 0;
+let computerScore = 0;
+
+
+
 function getComputerChoice() {
     //Write code to randomly return string values of
     //"rock" or "paper" or "scissors"
@@ -45,3 +50,4 @@ function getHumanChoice() {
     //RETURN variable containing the user's choice
     return humanChoice;
 }
+
