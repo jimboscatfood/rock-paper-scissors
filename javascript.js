@@ -14,16 +14,34 @@ function getComputerChoice() {
         console.log("The computer's choice is rock");
         return "rock";
     }
-    //IF the random number equals 2 THEN
+    //ELSE IF the random number equals 2 THEN
         //RETURN "paper"
     else if (computerChoice === 2) {
         console.log("The computer's choice is paper");
         return "paper";
     }
-    //IF the random number equals 3 THEN
+    //ELSE IF the random number equals 3 THEN
         //RETURN "scissors"
     else if (computerChoice === 3) {
         console.log("The computer's choice is scissors");
         return "scissors";
     }
+}
+
+function getHumanChoice() {
+    //CREATE and INIT a variable that stores the human choice
+    let humanChoice = "";
+    let userInput = "";
+    //PROMPT to get the user's input and ASSIGN the value to the variable
+    userInput = prompt("Choose: rock, paper or scissors");
+    humanChoice = (String(userInput).toLowerCase()).trim();
+    //WHILE the variable value does not equal to one of the valid choices
+    while (humanChoice !== "rock" && humanChoice !== "paper" && humanChoice !== "scissors") {
+        //PROMPT to get the user's input again with an error message
+        userInput = prompt("Your choice is not valid. Choose: rock, paper or scissors");
+        humanChoice = (String(userInput).toLowerCase()).trim();
+    }
+    //END WHILE
+    //RETURN variable containing the user's choice
+    return humanChoice;
 }
