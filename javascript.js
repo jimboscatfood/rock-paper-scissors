@@ -97,20 +97,6 @@ function playGame() {
     }
     //End of playRound function
     
-    //FOR no. of round < 5
-    for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
-        //CALL the two functions to get human and computer choice before playing round
-        //STORE the two values from the functions into two variables
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        //CALL playRound function with the two parameters which calls the get choice functions
-        playRound (humanSelection, computerSelection );
-        //PRINT score
-        console.log("Your score is: " + humanScore, '\n',"Computer's score is: " + computerScore);
-    }
-    
-    //END FOR
-
     //PRINT score
     console.log("Your final score is: " + humanScore, '\n',"Computer's final score is: " + computerScore)
     //IF human score is higher than computer THEN
