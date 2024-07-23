@@ -116,4 +116,22 @@ function playGame() {
     }
 }
 
-playGame();
+
+
+//DOM Manipulation
+
+//Create 3 buttons, one for each selection
+
+const container = document.createElement("div");
+container.textContent = "Hi I contain the 3 buttons";
+container.classList.add("container");
+document.body.appendChild(container);
+
+const rockButton = document.createElement("button");
+rockButton.textContent = "Rock";
+const paperButton = document.createElement("button");
+paperButton.textContent = "Paper";
+const scissorsButton = document.createElement("button");
+scissorsButton.textContent = "Scissors";
+container.append(rockButton, paperButton, scissorsButton);
+
