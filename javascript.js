@@ -130,3 +130,10 @@ buttons.forEach((button) => {
         playRound(button.textContent.toLowerCase(), getComputerChoice());
     })
 });
+
+
+//Add a div below the buttons to display results
+const resultBox = document.createElement("div");
+document.body.appendChild(resultBox);
+const result = document.createElement("p");
+resultBox.appendChild(result);
