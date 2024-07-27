@@ -11,19 +11,16 @@ function getComputerChoice() {
     //IF the random number equals 1 THEN
         //RETURN "rock"
     if (computerChoice === 1) {
-        console.log ("The computer chose rock");
         return "rock";
     }
     //ELSE IF the random number equals 2 THEN
         //RETURN "paper"
     else if (computerChoice === 2) {
-        console.log ("The computer chose paper");
         return "paper";
     }
     //ELSE IF the random number equals 3 THEN
         //RETURN "scissors"
     else if (computerChoice === 3) {
-        console.log ("The computer chose scissors");
         return "scissors";
     }
 }
@@ -33,74 +30,75 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-    //WHILE player's score is below 5
+    //IF any of the player's score is below 5
     if (humanScore < 5 && computerScore < 5) {
     //PLAY round as follow
     //IF both choices are the same THEN
+        choice.textContent = `You chose ${humanChoice}, the computer chose ${computerChoice}`;
         if (humanChoice === computerChoice) {
             //PRINT "It's a tie!"
-            console.log("It's a tie!");
+            result.textContent = `It's a tie! Your score: ${humanScore}, Computer's score: ${computerScore}`;
         }
         //ELSE IF human uses rock, computer uses paper THEN
         else if (humanChoice === "rock") {
             if (computerChoice === "paper") {
-                //PRINT "You lose! Paper beats Rock"
-                console.log("You lose! Paper beats Rock");
                 //Increment computerScore by 1
                 computerScore++;
+                //PRINT "You lose! Paper beats Rock"
+                result.textContent = `You lose! Paper beats Rock. Your score: ${humanScore}, Computer's score: ${computerScore}`;
+                if (computerScore === 5) {
+                    result.textContent += " - Computer is the winner!";
+                }
             }
             //ELSE IF human uses rock, computer uses scissors THEN
             else {
-                //PRINT "You win! Rock beats Scissors"
-                console.log("You win! Rock beats Scissors")
                 //Increment humanScore by 1
-                humanScore++;        
+                humanScore++;
+                //PRINT "You win! Rock beats Scissors"
+                result.textContent = `You win! Rock beats Scissors. Your score: ${humanScore}, Computer's score: ${computerScore}`;
+                if (humanScore === 5) {
+                    result.textContent += " - You are the winner!";
+                }        
             }
         }
         //ELSE IF human uses paper...
         else if (humanChoice === "paper") {
             if (computerChoice === "scissors") {
-                console.log("You lose! Scissors beats Paper");
                 computerScore++;
+                result.textContent = `You lose! Scissors beats Paper. Your score: ${humanScore}, Computer's score: ${computerScore}`;
+                if (computerScore === 5) {
+                    result.textContent += " - Computer is the winner!";
+                }
             }
             else {
-                console.log("You win! Paper beats Rock")
                 humanScore++;
+                result.textContent = `You win! Paper beats Rock. Your score: ${humanScore}, Computer's score: ${computerScore}`;
+                if (humanScore === 5) {
+                    result.textContent += " - You are the winner!";
+                }   
             }
         }
         //ELSE IF human uses scissors...
         else if (humanChoice === "scissors") {
             if (computerChoice === "rock") {
-                console.log("You lose! Rock beats Scissors");
                 computerScore++;
+                result.textContent = `You lose! Rock beats Scissors. Your score: ${humanScore}, Computer's score: ${computerScore}`;
+                if (computerScore === 5) {
+                    result.textContent += " - Computer is the winner!";
+                }
             }
             else {
-                console.log("You win! Scissors beats Paper")
                 humanScore++;
+                result.textContent = `You win! Scissors beats Paper. Your score: ${humanScore}, Computer's score: ${computerScore}`;
+                if (humanScore === 5) {
+                    result.textContent += " - You are the winner!";
+                } 
             }
         }
     }
-}
-//End of playRound function
-    
-    //PRINT score
-    console.log("Your final score is: " + humanScore, '\n',"Computer's final score is: " + computerScore)
-    //IF human score is higher than computer THEN
-    if (humanScore > computerScore) {
-        //PRINT "You're the winner!"
-        console.log("You're the winner!");
-    }
-    //ELSE IF computer score is higher
-    else if (humanScore < computerScore) {
-        //PRINT "Computer is the winner!"
-        console.log("Computer is the winner!");
-    }
-    //ELSE IF both scores are the same
-    else {
-        //PRINT "It's a tie!"
-        console.log("It's a tie!");
-    }
+}        
 
+//End of playRound function
 
 
 //DOM Manipulation
@@ -108,9 +106,12 @@ function playRound(humanChoice, computerChoice) {
 //Create 3 buttons, one for each selection
 
 const container = document.createElement("div");
-container.textContent = "Hi I contain the 3 buttons";
+
 container.classList.add("container");
 document.body.appendChild(container);
+const title = document.createElement("h1");
+title.textContent = "Rock, Paper, Scissors: Shoot your shot";
+container.appendChild(title);
 
 const rockButton = document.createElement("button");
 rockButton.textContent = "Rock";
@@ -122,7 +123,6 @@ container.append(rockButton, paperButton, scissorsButton);
 
 
 //Add event listener to the buttons that call playRound function
-//playRound takes in a string as argument for humanChoice
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
@@ -131,8 +131,14 @@ buttons.forEach((button) => {
     })
 });
 
+//Add a div below title to show players' choice
+const choiceBox = document.createElement("div");
+document.body.appendChild(choiceBox);
+const choice = document.createElement("p");
+choiceBox.appendChild(choice);
 
-//Add a div below the buttons to display results
+
+//Add a div below player's choice to display results
 const resultBox = document.createElement("div");
 document.body.appendChild(resultBox);
 const result = document.createElement("p");
